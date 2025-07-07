@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inverter Monitor</title>
+<style>
+body { display: flex; font-family: Arial, sans-serif; height: 100vh; margin: 0; }
+#voltage { flex: 1; padding: 10px; border-right: 1px solid #ccc; }
+#log { flex: 1; padding: 10px; }
+#config { margin-top: 10px; }
+</style>
+</head>
+<body>
+<div id="voltage">
+<h2>Voltage</h2>
+<div id="voltage-display">--</div>
+<div id="config">
+<label>Username <input id="username" type="text"></label><br>
+<label>Password <input id="password" type="password"></label><br>
+<label>Absorb Voltage <input id="absorbVoltage" type="number" step="0.1"></label><br>
+<label>Float Voltage <input id="floatVoltage" type="number" step="0.1"></label><br>
+<label>Absorb Hours <input id="absorbHours" type="number" step="0.1"></label><br>
+<button id="setConfig">Set</button>
+</div>
+</div>
+<div id="log">
+<h2>Log</h2>
+<pre id="log-output" style="height:90%;overflow:auto;background:#f0f0f0;"></pre>
+</div>
+<script src="renderer.js"></script>
+</body>
+</html>
