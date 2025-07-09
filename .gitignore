@@ -1,7 +1,3 @@
-<<<<<<< codex/install-test-runner-and-add-sample-test
 node_modules/
-=======
-node_modules
 .env
 /dist
->>>>>>> main
