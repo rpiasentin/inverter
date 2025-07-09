@@ -1,71 +1,40 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inverter Host Settings</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inverter Monitor Web</title>
 </head>
 <body>
-    <h1>Configure Inverter Host</h1>
-    <input type="text" id="hostInput" placeholder="Enter inverter host" />
+  <h2>Voltage: <span id="voltage">--</span></h2>
+  <div id="host-config">
+    <input id="host" type="text" placeholder="Inverter URL">
     <button id="saveHost">Save Host</button>
-
-    <script>
-        // Load stored host on startup
-        document.addEventListener('DOMContentLoaded', function() {
-            const storedHost = localStorage.getItem('inverterHost');
-            if (storedHost) {
-                document.getElementById('hostInput').value = storedHost;
-            }
-        });
-
-        // Persist host when button is clicked
-        document.getElementById('saveHost').addEventListener('click', function() {
-            const host = document.getElementById('hostInput').value;
-            if (host) {
-                localStorage.setItem('inverterHost', host);
-                alert('Host saved: ' + host);
-            }
-        });
-    </script>
-=======
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Inverter Monitor Web</title>
-</head>
-<body>
-<h2>Voltage: <span id="voltage">--</span></h2>
-<div id="host-config">
-  <input id="host" type="text" placeholder="Inverter URL">
-  <button id="saveHost">Save Host</button>
-</div>
-<pre id="log" style="background:#f0f0f0;height:300px;overflow:auto;"></pre>
-<script>
-let host = localStorage.getItem('host') || 'http://192.168.1.1';
-document.getElementById('host').value = host;
-document.getElementById('saveHost').onclick = () => {
-  host = document.getElementById('host').value;
-  localStorage.setItem('host', host);
-  log('Host saved: ' + host);
-};
-async function poll() {
-  try {
-    const status = await fetch(host + '/api/status').then(r => r.json());
-    document.getElementById('voltage').textContent = status.voltage + ' V';
-    log('polled inverter');
-  } catch (err) {
-    log('failed: ' + err);
-  }
-}
-function log(msg) {
-  const el = document.getElementById('log');
-  el.textContent += msg + '\n';
-  el.scrollTop = el.scrollHeight;
-}
-setInterval(poll, 5000);
-</script>
-
+  </div>
+  <pre id="log" style="background:#f0f0f0;height:300px;overflow:auto;"></pre>
+  <script>
+    let host = localStorage.getItem('host') || 'http://192.168.1.1';
+    document.getElementById('host').value = host;
+    document.getElementById('saveHost').onclick = () => {
+      host = document.getElementById('host').value;
+      localStorage.setItem('host', host);
+      log('Host saved: ' + host);
+    };
+    async function poll() {
+      try {
+        const status = await fetch(host + '/api/status').then(r => r.json());
+        document.getElementById('voltage').textContent = status.voltage + ' V';
+        log('polled inverter');
+      } catch (err) {
+        log('failed: ' + err);
+      }
+    }
+    function log(msg) {
+      const el = document.getElementById('log');
+      el.textContent += msg + '\n';
+      el.scrollTop = el.scrollHeight;
+    }
+    setInterval(poll, 5000);
+  </script>
 </body>
 </html>
