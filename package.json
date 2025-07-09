@@ -1,0 +1,33 @@
+{
+  "name": "inverter",
+  "version": "1.0.0",
+  "description": "",
+<<<<<<< codex/install-test-runner-and-add-sample-test
+  "main": "index.js",
+  "scripts": {
+=======
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "package-mac": "electron-builder --mac",
+    "package-win": "electron-builder --win",
+>>>>>>> main
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+<<<<<<< codex/install-test-runner-and-add-sample-test
+  "devDependencies": {
+=======
+  "dependencies": {
+    "dotenv": "^16"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.0",
+>>>>>>> main
+    "jest": "^30.0.4"
+  }
+}

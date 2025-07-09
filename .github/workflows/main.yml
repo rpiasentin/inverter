@@ -1,0 +1,38 @@
+
+New
++34
+-0
+
+name: Windows Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Package for Windows
+        run: npm run package-win
+
+      - name: Upload Installer
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-installer
+          path: dist/windows-installer.exe
