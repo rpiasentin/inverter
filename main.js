@@ -1,3 +1,14 @@
+<<<<<<< codex/install-test-runner-and-add-sample-test
+function averageVoltage(values) {
+  if (!Array.isArray(values) || values.length === 0) {
+    return 0;
+  }
+  const sum = values.reduce((acc, v) => acc + v, 0);
+  return sum / values.length;
+}
+
+module.exports = { averageVoltage };
+=======
 <<<<<<< codex/add-basic-authentication-support-in-main.js
 // Basic polling script for inverter API
 // Polls /api/status and /api/config with optional Basic authentication
@@ -193,4 +204,5 @@ app.whenReady().then(() => {
     setInterval(pollInverter, 5000);
   });
 });
+>>>>>>> main
 >>>>>>> main
